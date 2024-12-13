@@ -42,15 +42,15 @@ services:
   ##########################
 
   keycloak:
-    build: ./keycloak
+    image: youweisoft/keycloak-3.4.3.local
     environment:
       KEYCLOAK_LOGLEVEL: DEBUG
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: password
       POSTGRES_DATABASE: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: password
-      POSTGRES_PORT_5432_TCP_ADDR: keycloak-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_PORT_5432_TCP_ADDR: dev-main-db
       PROXY_ADDRESS_FORWARDING: "true"
       _JAVA_OPTIONS: -Xmx128m -Xms50m
     command:
@@ -66,10 +66,8 @@ services:
       - "8443:8443"
     volumes:
       - ./keycloak/init-migration/:/migration/
-    links:
-      - keycloak-db:postgres
     depends_on:
-      - keycloak-db
+      - dev-main-db
 
   keycloak-db:
     image: postgres:10
@@ -87,7 +85,7 @@ services:
   ##############################
 
   kafka:
-    build: ./kafka-docker # derived from https://github.com/wurstmeister/kafka-docker
+    image: bitnami/kafka
     ports:
       - "9092:9092"
     environment:
