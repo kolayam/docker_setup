@@ -204,8 +204,9 @@ services:
       - INDEXING_SERVICE_SOLR_PASSWORD=
       - INDEXING_SYNC=true
       - CATALOG_SERVICE_OAUTH_CLIENT_ID=catalog-service-client
-      - CATALOG_SERVICE_OAUTH_SECRET=a0ea1248-084d-461b-ba19-52298c7ea680
+      - CATALOG_SERVICE_OAUTH_SECRET=8432da6d-f930-4b50-9747-7d6648095319
       - OAUTH_CLIENT_ACCESSTOKEN_URI=
+      - CATALOGUE_SERVICE_ENABLED_TAXONOMIES=eClass,FurnitureOntology
 
   ###############################
   ###### Frontend Service #######
