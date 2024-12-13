@@ -38,13 +38,13 @@ services:
       - KEYCLOAK_ADMIN_USERNAME=admin
       - KEYCLOAK_ADMIN_PASSWORD=password
       - KEYCLOAK_ADMIN_CLIENT_ID=admin-cli
+      - KEYCLOAK_ADMIN_CLIENT_SECRET=593660d2-0dd8-415b-bcc7-e30f0da6ecb2
       - CATALOG_SERVICE_OAUTH_CLIENT_ID=catalog-service-client
-      - CATALOG_SERVICE_OAUTH_SECRET=a0ea1248-084d-461b-ba19-52298c7ea680
+      - CATALOG_SERVICE_OAUTH_SECRET=8432da6d-f930-4b50-9747-7d6648095319
       - BP_SERVICE_OAUTH_CLIENT_ID=bp-service-client
-      - BP_SERVICE_OAUTH_SECRET=e497e7f3-d719-4e23-9f03-9cab09333f36
-      - KEYCLOAK_ADMIN_CLIENT_SECRET=cd2c2640-bca0-4d1d-9dab-b5705a17fbf8
+      - BP_SERVICE_OAUTH_SECRET=ec206bcb-1ee9-48b9-bbe2-e9322c161469
       - OAUTH_CLIENT_ID=nimble_client
-      - OAUTH_CLIENT_SECRET=cbcd2e6f-e58a-42b4-9d2d-95a933ee29ae
+      - OAUTH_CLIENT_SECRET=c8f97774-d0c9-4840-a3b6-4036e59478c6
       - OAUTH_CLIENT_ACCESSTOKEN_URI=http://keycloak:8080/auth/realms/master/protocol/openid-connect/token
       - ROCKET_CHAT=false
       - INDEXING_SERVICE_URL=http://indexing-service:8080/

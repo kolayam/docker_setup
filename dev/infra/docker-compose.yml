@@ -52,7 +52,6 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_PORT_5432_TCP_ADDR: dev-main-db
       PROXY_ADDRESS_FORWARDING: "true"
-      _JAVA_OPTIONS: -Xmx128m -Xms50m
     command:
       - "-b"
       - "0.0.0.0"
