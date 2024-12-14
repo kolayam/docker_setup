@@ -207,6 +207,7 @@ services:
       - CATALOG_SERVICE_OAUTH_SECRET=8432da6d-f930-4b50-9747-7d6648095319
       - OAUTH_CLIENT_ACCESSTOKEN_URI=
       - CATALOGUE_SERVICE_ENABLED_TAXONOMIES=eClass,FurnitureOntology
+      - EUREKA_CLIENT_HEALTHCHECK=false
 
   ###############################
   ###### Frontend Service #######

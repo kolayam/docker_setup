@@ -11,8 +11,18 @@ services:
       - env_vars
     ports:
       - "8888:8888"
+    command:
+      - /bin/bash
+      - -c
+      - |
+        cd /data/cloud-config
+        git init
     environment:
       _JAVA_OPTIONS: -Xmx128m -Xms50m
+      CLOUD_CONFIG_GIT_URL:  file:///data/cloud-config
+    volumes:
+      - ./cloud-config/:/data/cloud-config/
+
 
   service-discovery:
     image: nimbleplatform/service-discovery:latest
@@ -36,6 +46,7 @@ services:
       - service-discovery
     environment:
       _JAVA_OPTIONS: -Xmx128m -Xms50m
+
 
   ##########################
   ######## Keycloak ########

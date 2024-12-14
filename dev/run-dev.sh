@@ -17,7 +17,7 @@ start_all () {
 	echo "*****************************************************************"
 	echo "******************* Stalling for Gateway Proxy ******************"
 	echo "*****************************************************************"
-	docker run --rm --net=nimbleinfra_default -it mcandre/docker-wget --retry-connrefused --waitretry=5 --read-timeout=20 --timeout=15 --tries 60 gateway-proxy:80/info
+	#docker run --rm --net=nimbleinfra_default -it mcandre/docker-wget --retry-connrefused --waitretry=5 --read-timeout=20 --timeout=15 --tries 60 gateway-proxy:80/info
 
 	# start services
 	docker-compose -f services/docker-compose.yml --project-name nimbleservices up -d --build --remove-orphans
@@ -25,10 +25,10 @@ start_all () {
 	echo "*****************************************************************"
 	echo "********************* Stalling for services *********************"
 	echo "*****************************************************************"
-	docker run --rm --net=nimbleinfra_default -it mcandre/docker-wget --retry-connrefused --waitretry=5 --read-timeout=20 --timeout=15 --tries 30 frontend-service:8080
-	docker run --rm --net=nimbleinfra_default -it mcandre/docker-wget --retry-connrefused --waitretry=5 --read-timeout=20 --timeout=15 --tries 30 identity-service:9096/info
-	docker run --rm --net=nimbleinfra_default -it mcandre/docker-wget --retry-connrefused --waitretry=5 --read-timeout=20 --timeout=15 --tries 30 catalog-service:8095/info
-	docker run --rm --net=nimbleinfra_default -it mcandre/docker-wget --retry-connrefused --waitretry=5 --read-timeout=20 --timeout=15 --tries 30 business-process-service:8085/info
+	#docker run --rm --net=nimbleinfra_default -it mcandre/docker-wget --retry-connrefused --waitretry=5 --read-timeout=20 --timeout=15 --tries 30 frontend-service:8080
+	#docker run --rm --net=nimbleinfra_default -it mcandre/docker-wget --retry-connrefused --waitretry=5 --read-timeout=20 --timeout=15 --tries 30 identity-service:9096/info
+	#docker run --rm --net=nimbleinfra_default -it mcandre/docker-wget --retry-connrefused --waitretry=5 --read-timeout=20 --timeout=15 --tries 30 catalog-service:8095/info
+	#docker run --rm --net=nimbleinfra_default -it mcandre/docker-wget --retry-connrefused --waitretry=5 --read-timeout=20 --timeout=15 --tries 30 business-process-service:8085/info
 }
 
 # run infrastructure
@@ -64,6 +64,16 @@ elif [[ "$1" = "start" ]]; then
 elif [[ "$1" = "start-no-update" ]]; then
 
 	start_all
+
+elif [[ "$1" = "marmotta" ]]; then
+
+	docker-compose -f infra/marmotta/docker-compose-marmotta.yml --project-name nimbleinfra-prod pull
+	docker-compose -f infra/marmotta/docker-compose-marmotta.yml --project-name nimbleinfra-prod up --build -d
+
+elif [[ "$1" = "elk" ]]; then
+
+	docker compose -f infra/elk/docker-compose-elk.yml --project-name nimbleinfra up --build -d
+
 
 elif [[ "$1" = "stop" ]]; then
 	

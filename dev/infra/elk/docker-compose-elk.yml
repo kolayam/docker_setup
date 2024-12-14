@@ -11,9 +11,15 @@ services:
       - elastic-volume:/usr/share/elasticsearch/data
     environment:
       ES_JAVA_OPTS: "-Xmx1024m -Xms1024m"
+      discovery.type: single-node
     mem_limit: 2000m
     networks:
       - infra
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 26677
+        hard: 65536
 
   logstash:
     build: ./logstash/
